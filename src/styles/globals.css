@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+
+@theme inline {
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  :root {
+    --background: #0d1117;
+    --foreground: #e6edf3;
+    --card: #161b22;
+    --card-foreground: #e6edf3;
+    --popover: #161b22;
+    --popover-foreground: #e6edf3;
+    --primary: #2ea043;
+    --primary-foreground: #ffffff;
+    --secondary: #21262d;
+    --secondary-foreground: #c9d1d9;
+    --muted: #21262d;
+    --muted-foreground: #8b949e;
+    --accent: #1f6feb;
+    --accent-foreground: #ffffff;
+    --destructive: #da3633;
+    --destructive-foreground: #ffffff;
+    --border: #30363d;
+    --input: #21262d;
+    --ring: #1f6feb;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono selection:bg-green-900 selection:text-green-100;
+  }
+
+  @media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+    .scanlines {
+        display: none !important;
+    }
+  }
+}
+
+/* Custom Scrollbar for Terminal Look */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #58a6ff;
+}
+
+/* Blinking Cursor Animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Matrix/Scanline subtle effect */
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.3;
+}
